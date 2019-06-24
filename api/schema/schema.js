@@ -1,8 +1,10 @@
 const graphql = require('graphql');
-const User = require('../models/User');
-const UserController = require('../controllers/user');
+// const User = require('../models/User');
+// const UserController = require('../controllers/user');
 // const Author = require('../models/author');
 // const _ = require('lodash');
+// const api_key = 'jWG43knDecNZg0YlHasUA0cZq4mBJKaWgMs6oRTX';
+
 
 const {
     GraphQLObjectType,
@@ -50,17 +52,23 @@ const RootQuery = new GraphQLObjectType({
     fields: {
         user: {
             type: UserType,
-            // args: { id: { type: GraphQLID } },
+            args: { username: { type: GraphQLString } },
             async resolve(parent, args){
-                console.log('schema.js controller is ', UserController);
-                let result = await User.findAll()
-                .then((data) => data)
-                .then((d) => d)
-                .catch(err => err);
-                console.log('schema.js', result);
-                return result[0];
+                // console.log('schema.js controller is ', UserController);
+
+                let rover = args.rover;
+                let sol = args.sol;
+                let camera = args.camera;
+                const url = `http://mars-photos.herokuapp.com/api/v1/rovers/${rover}/photos?sol=${sol}`;
+                // let result = await User.findAll()
+                // .then((data) => data)
+                // .then((d) => d)
+                // .catch(err => err);
+                // console.log('schema.js', result);
+                // return result[0];
                 // User.findById(args.id);
                 // insert model pg-promise method
+                return {username: "hi", email: "hello"};
             }
         },
         // author: {

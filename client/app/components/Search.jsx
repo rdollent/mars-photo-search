@@ -24,18 +24,24 @@ class Search extends React.Component {
         e.preventDefault();
         console.log(this.state);
         // fetch
-        fetch('https://data.nasa.gov/resource/gh4g-9sfh.json', {
-            method: 'GET'
-            })
-            .then(res => res.json())
-            .then((data) => {
-                console.log(data);
-            })
-            .catch(err => {
-                throw new Error(err);
-            });
-        const data = this.props.getUserQuery;
-        data.then(d => console.log('users are ', d));
+        // fetch('https://data.nasa.gov/resource/gh4g-9sfh.json', {
+        //     method: 'GET'
+        //     })
+        //     .then(res => res.json())
+        //     .then((data) => {
+        //         console.log(data);
+        //     })
+        //     .catch(err => {
+        //         throw new Error(err);
+        //     });
+
+        const data = this.props.getUserQuery({
+            variables: {
+                username: 'hi'
+            }
+        }).user;
+        // const data = this.props.getUserQuery.user;
+        console.log('users are ', data);
     }
 
     render() {
