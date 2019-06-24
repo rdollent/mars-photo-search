@@ -2,7 +2,7 @@ import React from 'react';
 // need connect function to be able to connect to store from Provider
 import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
-import { getUserQuery } from '../../../api/queries/queries.js';
+import { getUserQuery, getUsersQuery } from '../../../api/queries/queries.js';
 
 // , getAuthorsQuery, addBookMutation, getBooksQuery } 
 
@@ -35,11 +35,7 @@ class Search extends React.Component {
         //         throw new Error(err);
         //     });
 
-        const data = this.props.getUserQuery({
-            variables: {
-                username: 'hi'
-            }
-        }).user;
+        const data = this.props.data.user;
         // const data = this.props.getUserQuery.user;
         console.log('users are ', data);
     }
@@ -78,7 +74,13 @@ const Container = connect(mapStateToProps, mapDispatchToProps)(Search);
 export default compose(
     // graphql(getAuthorsQuery, { name: "getAuthorsQuery" }),
     // graphql(addBookMutation, { name: "addBookMutation" }),
-    graphql(getUserQuery, { name: "getUserQuery" })
+    graphql(getUserQuery, { name: "getUserQuery", options: (props) => {
+        return {
+            variables: {
+                username: "hi"
+            }
+        }
+    } })
 )(Container);
 
 

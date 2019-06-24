@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost';
 
-const getUserQuery = gql`
+const getUsersQuery = gql`
     {
-        user(username: $username) {
+        user {
             username
             email
         }
@@ -56,6 +56,18 @@ const getUserQuery = gql`
 //     }
 // `;
 
-export { getUserQuery };
+
+
+const getUserQuery = gql`
+    query GetUser($username: USERNAME){
+        user(username: $username) {
+            username
+            email
+        }
+    }
+`;
+
+
+export { getUserQuery, getUsersQuery };
 
 // , getAuthorsQuery, getBooksQuery, addBookMutation, getBookQuery };

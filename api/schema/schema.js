@@ -53,7 +53,7 @@ const RootQuery = new GraphQLObjectType({
         user: {
             type: UserType,
             args: { username: { type: GraphQLString } },
-            async resolve(parent, args){
+            resolve(parent, args){
                 // console.log('schema.js controller is ', UserController);
 
                 let rover = args.rover;
@@ -78,12 +78,12 @@ const RootQuery = new GraphQLObjectType({
         //         return Author.findById(args.id);
         //     }
         // },
-        books: {
-            type: new GraphQLList(UserType),
-            resolve(parent, args){
-                return User.find({});
-            }
-        }
+        // books: {
+        //     type: new GraphQLList(UserType),
+        //     resolve(parent, args){
+        //         return User.find({});
+        //     }
+        // }
         // ,
         // authors: {
         //     type: new GraphQLList(AuthorType),
